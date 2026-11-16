@@ -13,27 +13,34 @@ Servo servo2;
 Servo servo3;
 Servo servo4;
 
-// servo 1
+// servo 1 (ex 1)
 const int touchPin = 7;
 const int servoPin = 6;
 
-// servo 2
+// servo 2 (ex 2)
 const int touchPin2 = 3;
 const int servoPin2 = 2;
 
-// Servo 3
+// servo 3 (final ex)
 const int touchPin3 = 5;
 const int servoPin3 = 4;
 
-// servo 4
+// servo 4 (scott dying)
 const int touchPin4 = 9;
 const int servoPin4 = 8;
+
+// light (w ramona)
+const int ledPin = 10;
+const int ledTouchPin = 11;
 
 void setup() {
   pinMode(touchPin, INPUT_PULLUP);
   pinMode(touchPin2, INPUT_PULLUP);
   pinMode(touchPin3, INPUT_PULLUP);
   pinMode(touchPin4, INPUT_PULLUP);
+  pinMode(ledTouchPin, INPUT_PULLUP);
+
+  pinMode(ledPin, OUTPUT);
 
   servoo.attach(servoPin);
   servo2.attach(servoPin2);
@@ -44,35 +51,45 @@ void setup() {
   servo2.write(0);
   servo3.write(0);
   servo4.write(0);
+
+  digitalWrite(ledPin, LOW);
 }
 
 void loop() {
-  // servo 1
+  // 1
   if (digitalRead(touchPin) == LOW) {
     servoo.write(90);
   } else {
     servoo.write(0);
   }
 
-  // servo 2
+  // 2
   if (digitalRead(touchPin2) == LOW) {
     servo2.write(90);
   } else {
     servo2.write(0);
   }
 
-  // servo 3
+  // 3
   if (digitalRead(touchPin3) == LOW) {
     servo3.write(90);
   } else {
     servo3.write(0);
   }
 
-  // servo 4
+  // 4
   if (digitalRead(touchPin4) == LOW) {
     servo4.write(90);
   } else {
     servo4.write(0);
+  }
+
+  // light
+  
+  if (digitalRead(ledTouchPin) == LOW) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
   }
 
   delay(15);
